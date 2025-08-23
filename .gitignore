@@ -1,0 +1,26 @@
+# Diretórios de build
+/build/
+/out/
+/bin/
+
+# Gradle
+.gradle/
+/gradlew
+/gradlew.bat
+/build.gradle
+/settings.gradle
+
+# Arquivos de configuração
+config.properties
+
+# CSVs
+/csv/
+
+# IDEs
+*.iml
+.idea/
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
