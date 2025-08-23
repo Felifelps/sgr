@@ -1,5 +1,7 @@
 package com.sgr.negocio.base;
 
+import java.util.Objects;
+
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,9 +14,10 @@ public class Pedido {
     private Pagamento pagamento;
     private Date data;
 
-    public Pedido(int id, Cliente cliente) {
+    public Pedido(int id, Cliente cliente, Date data) {
         this.id = id;
         setCliente(cliente);
+        setData(data);
     }
 
     @Override
@@ -25,7 +28,7 @@ public class Pedido {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClasse()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
         return id == pedido.id;
     }
@@ -33,10 +36,10 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{"
-            + "id=" + this.id
-            + "cliente=" + this.cliente
-            + "pagamento=" + this.pagamento
-            + "data=" + this.data
+            + "id=" + this.id + ","
+            + "cliente=" + this.cliente + ","
+            + "pagamento=" + this.pagamento + ","
+            + "data=" + this.data + ","
             + "itens=" + this.itens
         + "}";
     }
@@ -75,5 +78,9 @@ public class Pedido {
 
     public Date getData() {
         return this.data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 } 

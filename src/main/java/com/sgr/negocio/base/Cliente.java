@@ -2,6 +2,8 @@ package com.sgr.negocio.base;
 
 import java.util.Objects;
 
+import java.util.Objects;
+
 public class Cliente {
     private String cpf;
     private String nome;
@@ -21,7 +23,7 @@ public class Cliente {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClasse()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
         return Objects.equals(cpf, cliente.cpf);
     }
@@ -29,12 +31,12 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{"
-            + "cpf=" + this.cpf
+            + "cpf=" + this.cpf + ","
             + "nome=" + this.nome
         + "}";
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return this.cpf;
     }
 
@@ -47,7 +49,7 @@ public class Cliente {
     }
 
     public String getTelefone() {
-        return this.nome;
+        return this.telefone;
     }
 
     public void setTelefone(String telefone) {

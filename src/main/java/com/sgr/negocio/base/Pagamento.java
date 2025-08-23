@@ -1,5 +1,7 @@
 package com.sgr.negocio.base;
 
+import java.util.Objects;
+
 public abstract class Pagamento {
     protected int id;
     protected double valor;
@@ -17,7 +19,7 @@ public abstract class Pagamento {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClasse()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Pagamento pagamento = (Pagamento) o;
         return id == pagamento.id;
     }
