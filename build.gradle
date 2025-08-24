@@ -19,6 +19,11 @@ repositories {
     jcenter()
 }
 
+// Seta System.in como input padrão
+run {
+    standardInput = System.in
+}
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
