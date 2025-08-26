@@ -25,7 +25,7 @@ public class MenuCliente extends MenuTerminal {
                 adicionarCliente();
                 break;
             case 2:
-                // menuPedidos;
+                removerCliente();
                 break;
             case 3:
                 listarClientes();
@@ -55,12 +55,25 @@ public class MenuCliente extends MenuTerminal {
 
     private void adicionarCliente() {
         try {
-            ClienteDTO clienteDto = new ClienteDTO(
+            fachada.adicionarCliente(
                 TerminalUtils.input("CPF: "),
                 TerminalUtils.input("Nome: "),
                 TerminalUtils.input("Telefone: ")
             );
-            fachada.adicionarCliente(clienteDto);
+            mensagem = "Cliente adicionado com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
+    }
+
+    private void removerCliente() {
+        try {
+            fachada.removerCliente(
+                TerminalUtils.input("CPF: ")
+            );
+            mensagem = "Cliente removido com sucesso!";
             return;
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -2,7 +2,7 @@ package com.sgr.negocio.base;
 
 import java.util.Objects;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,9 +12,9 @@ public class Pedido {
     private Cliente cliente;
     private List<Item> itens = new ArrayList<>();
     private Pagamento pagamento;
-    private Date data;
+    private LocalDate data;
 
-    public Pedido(int id, Cliente cliente, Date data) {
+    public Pedido(int id, Cliente cliente, LocalDate data) {
         this.id = id;
         setCliente(cliente);
         setData(data);
@@ -76,11 +76,11 @@ public class Pedido {
         this.pagamento = pagamento;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return this.data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 } 

@@ -1,6 +1,6 @@
 package com.sgr.fachada.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,7 +15,7 @@ public class PedidoDTO {
     public final ClienteDTO cliente;
     public final List<ItemDTO> itens = new ArrayList<>();
     public final PagamentoDTO pagamento;
-    public final Date data;
+    public final LocalDate data;
 
     public PedidoDTO(Pedido pedido) {
         this.id = pedido.getId();
@@ -34,7 +34,7 @@ public class PedidoDTO {
         this.data = pedido.getData();
     }
 
-    public PedidoDTO(int id, ClienteDTO cliente, Date data, PagamentoDTO pagamento) {
+    public PedidoDTO(int id, ClienteDTO cliente, LocalDate data, PagamentoDTO pagamento) {
         this.id = id;
         this.cliente = cliente;
         this.pagamento = pagamento;

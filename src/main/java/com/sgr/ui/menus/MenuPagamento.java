@@ -22,10 +22,10 @@ public class MenuPagamento extends MenuTerminal {
     protected boolean tratarOpcao(int opcao) {
         switch (opcao) {
             case 1:
-                // menuPedidos;
+                adicionarPagamento();
                 break;
             case 2:
-                // menuPagamento.exibir();
+                removerPagamento();
                 break;
             case 3:
                 listarPagamentos();
@@ -51,5 +51,50 @@ public class MenuPagamento extends MenuTerminal {
         }
         
         TerminalUtils.esperarEnter();
+    }
+
+    private void adicionarPagamento() {
+        try {
+            double valor = 0.0;
+            while (true) {
+                try {
+                    valor = Double.parseDouble(TerminalUtils.input("Valor: "));
+                    if (valor == 0.0) return;
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Digite um valor válido (ou 0 para cancelar)");
+                }
+            }
+            fachada.adicionarPagamento(
+                valor,
+                TerminalUtils.input("Tipo (pix,cartao,dinheiro): ")
+            );
+            mensagem = "Pagamento adicionado com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
+    }
+
+    private void removerPagamento() {
+        try {
+            int id = 0;
+            while (true) {
+                try {
+                    id = Integer.parseInt(TerminalUtils.input("Id: "));
+                    if (id == 0) return;
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Digite um id válido (ou 0 para cancelar)");
+                }
+            }
+            fachada.removerPagamento(id);
+            mensagem = "Pagamento removido com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
     }
 }

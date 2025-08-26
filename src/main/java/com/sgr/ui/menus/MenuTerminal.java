@@ -6,6 +6,7 @@ import com.sgr.ui.TerminalUtils;
 public abstract class MenuTerminal {
     protected String titulo;
     protected Fachada fachada;
+    protected String mensagem = "";
 
     public MenuTerminal(Fachada fachada, String titulo) {
         this.titulo = titulo;
@@ -17,7 +18,9 @@ public abstract class MenuTerminal {
             try {
                 TerminalUtils.limparTela();
                 
-                System.out.println(titulo + "\n");
+                System.out.println(titulo);
+                exibirMensagem();
+
                 mostrarOpcoes();
                 
                 int opcao = TerminalUtils.lerOpcao();
@@ -27,6 +30,11 @@ public abstract class MenuTerminal {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void exibirMensagem() {
+        System.out.println(mensagem);
+        mensagem = "";
     }
 
     protected abstract void mostrarOpcoes();

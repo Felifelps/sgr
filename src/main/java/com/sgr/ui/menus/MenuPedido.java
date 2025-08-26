@@ -3,6 +3,8 @@ package com.sgr.ui.menus;
 import java.util.List;
 
 import com.sgr.fachada.Fachada;
+import com.sgr.fachada.dto.ClienteDTO;
+import com.sgr.fachada.dto.ItemDTO;
 import com.sgr.fachada.dto.PedidoDTO;
 import com.sgr.ui.TerminalUtils;
 
@@ -13,22 +15,35 @@ public class MenuPedido extends MenuTerminal {
     }
 
     protected void mostrarOpcoes() {
-        System.out.println("1. Adicionar Pedido");
-        System.out.println("2. Remover Pedido");
-        System.out.println("3. Listar Pedidos");
-        System.out.println("0. Sair");
+        System.out.println("1. Adicionar pedido");
+        System.out.println("2. Listar pedidos");
+        System.out.println("3. Adicionar itens a pedido");
+        System.out.println("4. Remover itens de pedido");
+        System.out.println("5. Associar pagamento ao pedido");
+        System.out.println("6. Ver pedido");
+        System.out.println("0. Voltar");
+
     }
 
     protected boolean tratarOpcao(int opcao) {
         switch (opcao) {
             case 1:
-                // menuPedidos;
+                adicionarPedido();
                 break;
             case 2:
-                // menuPedido.exibir();
+                listarPedidos();
                 break;
             case 3:
-                listarPedidos();
+                adicionarItensAPedido();
+                break;
+            case 4:
+                removerItensDePedido();
+                break;
+            case 5:
+                associarPagamentoAPedido();
+                break;
+            case 6:
+                verPedido();
                 break;
             case 0:
                 return false;
@@ -37,6 +52,31 @@ public class MenuPedido extends MenuTerminal {
                 break;
         }
         return true;
+    }
+
+    private void adicionarPedido() {
+        try {
+            List<ClienteDTO> clientes = fachada.listarClientes();
+        
+            if (clientes.isEmpty()) {
+                System.out.println("Nenhum cliente cadastrado.");
+                return;
+            }
+
+            for (ClienteDTO cliente : clientes) {
+                System.out.println(cliente);
+            }
+
+            fachada.adicionarPedido(
+                TerminalUtils.input("Cpf do Cliente: ")
+            );
+
+            mensagem = "Pedido adicionado com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
     }
 
     private void listarPedidos() {
@@ -51,5 +91,58 @@ public class MenuPedido extends MenuTerminal {
         }
         
         TerminalUtils.esperarEnter();
+    }
+
+    private void adicionarItensAPedido() {
+        PedidoDTO pedido;
+        while (true) {
+            try {
+                int id = Integer.parseInt(
+                    TerminalUtils.input("Digite o id do pedido (0 para sair): "));
+                if (id == 0) return;
+                pedido = fachada.verPedido(id);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Id não válido.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        List<ItemDTO> itens = fachada.listarItens();
+        
+        if (itens.isEmpty()) {
+            System.out.println("Nenhum item cadastrado.");
+            return;
+        }
+
+        for (ItemDTO item : itens) {
+            System.out.println(item);
+        }
+
+        while (true) {
+            try {
+                int id = Integer.parseInt(
+                    TerminalUtils.input("Digite o id do item (0 para sair): "));
+                if (id == 0) break;
+                fachada.adicionariItemAPedido(pedido.id, id);
+            } catch (NumberFormatException e) {
+                System.out.println("Id não válido.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void removerItensDePedido() {
+
+    }
+
+    private void associarPagamentoAPedido() {
+
+    }
+
+    private void verPedido() {
+
     }
 }

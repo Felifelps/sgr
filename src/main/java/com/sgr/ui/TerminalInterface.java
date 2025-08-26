@@ -13,14 +13,11 @@ public class TerminalInterface {
 
     public static void run() {
         try {
-            if (fachada == null) {
-                fachada = new Fachada();
-            }
+            fachada = new Fachada();
+            menuPrincipal = new MenuPrincipal(fachada);
+            menuPrincipal.exibir();
         } catch (Exception e) {
             System.out.println("Erro ao iniciar o projeto: " + e);
         }
-
-        menuPrincipal = new MenuPrincipal(fachada);
-        menuPrincipal.exibir();
     }   
 }

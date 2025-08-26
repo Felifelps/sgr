@@ -69,8 +69,39 @@ public class Fachada {
             .toList();
     }
 
-    public void adicionarCliente(ClienteDTO clienteDto) throws Exception {
-        Cliente cliente = new Cliente(clienteDto.cpf, clienteDto.nome, clienteDto.telefone);
-        clienteService.adicionar(cliente);
+    public void adicionarCliente(String cpf, String nome, String telefone) throws Exception {
+        clienteService.adicionar(cpf, nome, telefone);
+    }
+
+    public void adicionarItem(String nome, double preco, String descricao) throws Exception {
+        itemService.adicionar(nome, preco, descricao);
+    }
+
+    public void adicionarPagamento(double valor, String tipo) throws Exception {
+        pagamentoService.adicionar(valor, tipo);
+    }
+
+    public void adicionarPedido(String cpfCliente) throws Exception {
+        pedidoService.adicionar(cpfCliente);
+    }
+
+    public void adicionariItemAPedido(int idPedido, int idItem) throws Exception {
+        pedidoService.adicionarItem(idPedido, idItem);
+    }
+
+    public PedidoDTO verPedido(int idPedido) throws Exception {
+        return new PedidoDTO(pedidoService.verPedido(idPedido));
+    }
+
+    public void removerCliente(String cpf) throws Exception {
+        clienteService.remover(cpf);
+    }
+
+    public void removerItem(int id) throws Exception {
+        itemService.remover(id);
+    }
+
+    public void removerPagamento(int id) throws Exception {
+        pagamentoService.remover(id);
     }
 }

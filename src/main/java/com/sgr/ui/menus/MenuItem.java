@@ -22,10 +22,10 @@ public class MenuItem extends MenuTerminal {
     protected boolean tratarOpcao(int opcao) {
         switch (opcao) {
             case 1:
-                // menuPedidos;
+                adicionarItem();
                 break;
             case 2:
-                // menuItem.exibir();
+                removerItem();
                 break;
             case 3:
                 listarItens();
@@ -51,5 +51,52 @@ public class MenuItem extends MenuTerminal {
         }
         
         TerminalUtils.esperarEnter();
+    }
+
+    private void adicionarItem() {
+        try {
+            String nome = TerminalUtils.input("Nome: ");
+            double preco = 0.0;
+            while (true) {
+                try {
+                    preco = Double.parseDouble(TerminalUtils.input("Preço: "));
+                    if (preco == 0.0) return;
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Digite um preço válido (ou 0 para cancelar)");
+                }
+            }
+            fachada.adicionarItem(
+                nome,
+                preco,
+                TerminalUtils.input("Descrição: ")
+            );
+            mensagem = "Item adicionado com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
+    }
+
+    private void removerItem() {
+        try {
+            int id = 0;
+            while (true) {
+                try {
+                    id = Integer.parseInt(TerminalUtils.input("Id: "));
+                    if (id == 0) return;
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Digite um id válido (ou 0 para cancelar)");
+                }
+            }
+            fachada.removerItem(id);
+            mensagem = "Item removido com sucesso!";
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
     }
 }

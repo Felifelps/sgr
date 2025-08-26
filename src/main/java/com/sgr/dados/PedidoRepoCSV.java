@@ -4,10 +4,10 @@ import com.sgr.util.Config;
 import com.sgr.negocio.base.*;
 
 import java.util.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class PedidoRepoCSV extends RepoCSV<Pedido> {
     private ClienteRepoCSV clienteRepo;
@@ -25,6 +25,18 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
         this.itemRepo = itemRepo;
         this.pagamentoRepo = pagamentoRepo;
 
+    }
+
+    public ClienteRepoCSV getClienteRepo() {
+        return clienteRepo;
+    }
+
+    public ItemRepoCSV getItemRepo() {
+        return itemRepo;
+    }
+
+    public PagamentoRepoCSV getPagamentoRepo() {
+        return pagamentoRepo;
     }
 
     @Override
@@ -51,10 +63,8 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
 
         line.add(pagamentoStr);
 
-        String dataISO = LocalDateTime.ofInstant(
-            pedido.getData().toInstant(),
-            ZoneId.systemDefault()
-        ).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        String dataISO = pedido.getData().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        line.add(dataISO);
 
         line.add(dataISO);
 
@@ -82,13 +92,7 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
             );
         }
 
-        Date data = Date.from(
-            LocalDateTime.parse(
-                line.get(3),
-                DateTimeFormatter.ISO_LOCAL_DATE_TIME
-            ).atZone(ZoneId.systemDefault())
-            .toInstant()
-        );
+         LocalDate data = LocalDate.parse(line.get(3), DateTimeFormatter.ISO_LOCAL_DATE);
 
         Pedido pedido = new Pedido(
             id,
