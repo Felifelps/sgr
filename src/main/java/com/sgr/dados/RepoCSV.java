@@ -22,8 +22,8 @@ public abstract class RepoCSV<T> { // Tipo genérico T
 
     protected abstract List<String> getHeaders();
 
-    protected abstract T getObjectByIdentifier(int identifier);
-    protected abstract T getObjectByIdentifier(String identifier);
+    public abstract T getObjectByIdentifier(int identifier);
+    public abstract T getObjectByIdentifier(String identifier);
 
     public void salvar() throws Exception {
         // Inicializando o arquivo

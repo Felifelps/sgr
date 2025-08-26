@@ -27,6 +27,12 @@ public class PagamentoDTO {
         }
     }
 
+    public PagamentoDTO(int id, double valor, String tipo) {
+        this.id = id;
+        this.valor = valor;
+        this.tipo = tipo;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.id);

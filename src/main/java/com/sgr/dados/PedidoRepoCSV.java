@@ -1,6 +1,6 @@
 package com.sgr.dados;
 
-import com.sgr.config.Config;
+import com.sgr.util.Config;
 import com.sgr.negocio.base.*;
 
 import java.util.*;
@@ -28,7 +28,7 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
     }
 
     @Override
-    protected Pedido getObjectByIdentifier(int id) {
+    public Pedido getObjectByIdentifier(int id) {
         for (Pedido p : listar()) {
             if (p.getId() == id) return p;
         }
@@ -36,7 +36,7 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
     }
 
     @Override
-    protected Pedido getObjectByIdentifier(String identifier) {
+    public Pedido getObjectByIdentifier(String identifier) {
         throw new UnsupportedOperationException("Pedido não tem ID textual");
     }
 

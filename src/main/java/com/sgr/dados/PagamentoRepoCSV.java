@@ -1,6 +1,6 @@
 package com.sgr.dados;
 
-import com.sgr.config.Config;
+import com.sgr.util.Config;
 import com.sgr.negocio.base.Pagamento;
 import com.sgr.negocio.base.PagamentoPix;
 import com.sgr.negocio.base.PagamentoCartao;
@@ -16,7 +16,7 @@ public class PagamentoRepoCSV extends RepoCSV<Pagamento> {
     }
 
     @Override
-    protected Pagamento getObjectByIdentifier(int id) {
+    public Pagamento getObjectByIdentifier(int id) {
         for (Pagamento p : listar()) {
             if (p.getId() == id) return p;
         }
@@ -24,7 +24,7 @@ public class PagamentoRepoCSV extends RepoCSV<Pagamento> {
     }
 
     @Override
-    protected Pagamento getObjectByIdentifier(String identifier) {
+    public Pagamento getObjectByIdentifier(String identifier) {
         throw new UnsupportedOperationException("Pagamento não tem ID textual");
     }
 

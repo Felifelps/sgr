@@ -15,6 +15,12 @@ public class ClienteDTO {
         this.telefone = cliente.getTelefone();
     }
 
+    public ClienteDTO(String cpf, String nome, String telefone) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.cpf);

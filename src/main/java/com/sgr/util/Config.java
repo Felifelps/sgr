@@ -1,4 +1,4 @@
-package com.sgr.config;
+package com.sgr.util;
 
 import java.io.*;
 import java.util.Properties;

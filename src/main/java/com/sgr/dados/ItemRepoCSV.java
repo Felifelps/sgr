@@ -1,6 +1,6 @@
 package com.sgr.dados;
 
-import com.sgr.config.Config;
+import com.sgr.util.Config;
 import com.sgr.negocio.base.Item;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class ItemRepoCSV extends RepoCSV<Item> {
     }
 
     @Override
-    protected Item getObjectByIdentifier(int id) {
+    public Item getObjectByIdentifier(int id) {
         for (Item i : listar()) {
             if (i.getId() == id) return i;
         }
@@ -21,7 +21,7 @@ public class ItemRepoCSV extends RepoCSV<Item> {
     }
 
     @Override
-    protected Item getObjectByIdentifier(String identifier) {
+    public Item getObjectByIdentifier(String identifier) {
         throw new UnsupportedOperationException("Item não tem ID textual");
     }
 

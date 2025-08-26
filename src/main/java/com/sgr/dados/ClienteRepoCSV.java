@@ -1,6 +1,6 @@
 package com.sgr.dados;
 
-import com.sgr.config.Config;
+import com.sgr.util.Config;
 import com.sgr.negocio.base.Cliente;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class ClienteRepoCSV extends RepoCSV<Cliente> {
     }
 
     @Override
-    protected Cliente getObjectByIdentifier(String cpf) {
+    public Cliente getObjectByIdentifier(String cpf) {
         for (Cliente c : listar()) {
             if (c.getCpf().equals(cpf)) return c;
         }
@@ -21,7 +21,7 @@ public class ClienteRepoCSV extends RepoCSV<Cliente> {
     }
 
     @Override
-    protected Cliente getObjectByIdentifier(int identifier) {
+    public Cliente getObjectByIdentifier(int identifier) {
         throw new UnsupportedOperationException("Cliente não tem ID numérico");
     }
 

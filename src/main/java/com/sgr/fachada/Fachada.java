@@ -9,15 +9,15 @@ import com.sgr.negocio.services.*;
 import com.sgr.fachada.dto.*;
 
 public class Fachada {
-    public static ClienteRepoCSV clienteRepo;
-    public static ItemRepoCSV itemRepo;
-    public static PagamentoRepoCSV pagamentoRepo;
-    public static PedidoRepoCSV pedidoRepo;
+    public ClienteRepoCSV clienteRepo;
+    public ItemRepoCSV itemRepo;
+    public PagamentoRepoCSV pagamentoRepo;
+    public PedidoRepoCSV pedidoRepo;
 
-    public static ClienteService clienteService;
-    public static ItemService itemService;
-    public static PagamentoService pagamentoService;
-    public static PedidoService pedidoService;
+    public ClienteService clienteService;
+    public ItemService itemService;
+    public PagamentoService pagamentoService;
+    public PedidoService pedidoService;
 
     public Fachada() throws Exception {
         this.clienteRepo = new ClienteRepoCSV();
@@ -66,6 +66,11 @@ public class Fachada {
         return itemService.listar()
             .stream()
             .map(ItemDTO::new)
-            .toList(); 
+            .toList();
+    }
+
+    public void adicionarCliente(ClienteDTO clienteDto) throws Exception {
+        Cliente cliente = new Cliente(clienteDto.cpf, clienteDto.nome, clienteDto.telefone);
+        clienteService.adicionar(cliente);
     }
 }

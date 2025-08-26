@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.sgr.negocio.base.Cliente;
 import com.sgr.negocio.base.Item;
+import com.sgr.negocio.base.Pagamento;
 import com.sgr.negocio.base.Pedido;
 
 public class PedidoDTO {
@@ -30,6 +32,13 @@ public class PedidoDTO {
         }
 
         this.data = pedido.getData();
+    }
+
+    public PedidoDTO(int id, ClienteDTO cliente, Date data, PagamentoDTO pagamento) {
+        this.id = id;
+        this.cliente = cliente;
+        this.pagamento = pagamento;
+        this.data = data;
     }
 
     @Override

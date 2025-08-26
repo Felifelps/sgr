@@ -22,10 +22,10 @@ public class MenuCliente extends MenuTerminal {
     protected boolean tratarOpcao(int opcao) {
         switch (opcao) {
             case 1:
-                // menuPedidos;
+                adicionarCliente();
                 break;
             case 2:
-                // menuCliente.exibir();
+                // menuPedidos;
                 break;
             case 3:
                 listarClientes();
@@ -51,5 +51,20 @@ public class MenuCliente extends MenuTerminal {
         }
         
         TerminalUtils.esperarEnter();
+    }
+
+    private void adicionarCliente() {
+        try {
+            ClienteDTO clienteDto = new ClienteDTO(
+                TerminalUtils.input("CPF: "),
+                TerminalUtils.input("Nome: "),
+                TerminalUtils.input("Telefone: ")
+            );
+            fachada.adicionarCliente(clienteDto);
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            TerminalUtils.esperarEnter();
+        }
     }
 }

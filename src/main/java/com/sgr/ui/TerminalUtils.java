@@ -12,8 +12,7 @@ public class TerminalUtils {
 
     public static int lerOpcao() {
         while (true) {
-            System.out.print("Digite uma opção: ");
-            String entrada = sc.nextLine().trim();
+            String entrada = input("Digite uma opção: ");
 
             if (entrada.isEmpty()) {
                 System.out.println("Digite novamente.");
@@ -27,6 +26,11 @@ public class TerminalUtils {
             }
         }
     }
+
+    public static String input(String message) {
+        System.out.print(message);
+        return sc.nextLine().trim();
+    } 
 
     public static void esperarEnter() {
         System.out.println("Pressione Enter para continuar...");
