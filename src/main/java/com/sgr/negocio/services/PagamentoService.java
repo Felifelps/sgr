@@ -35,9 +35,9 @@ public class PagamentoService {
         for (Pagamento p : repo.listar()) if (p.getId() > maior_id) maior_id = p.getId();       
 
         Pagamento p;
-        if (tipo == "pix")
+        if (tipo.equals("pix"))
             p = new PagamentoPix(maior_id + 1, valor);
-        else if (tipo == "cartao")
+        else if (tipo.equals("cartao"))
             p = new PagamentoCartao(maior_id + 1, valor);
         else // dinheiro
             p = new PagamentoDinheiro(maior_id + 1, valor);

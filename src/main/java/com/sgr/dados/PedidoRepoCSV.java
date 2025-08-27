@@ -66,8 +66,6 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
         String dataISO = pedido.getData().format(DateTimeFormatter.ISO_LOCAL_DATE);
         line.add(dataISO);
 
-        line.add(dataISO);
-
         String itensStr = pedido.getItens().stream()
             .map(item -> String.valueOf(item.getId()))
             .reduce((a, b) -> a + "-" + b)
@@ -92,7 +90,7 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
             );
         }
 
-         LocalDate data = LocalDate.parse(line.get(3), DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate data = LocalDate.parse(line.get(3), DateTimeFormatter.ISO_LOCAL_DATE);
 
         Pedido pedido = new Pedido(
             id,
@@ -101,8 +99,6 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
         );
 
         pedido.setPagamento(pagamento);
-
-        List<Item> itens = new ArrayList<>();
         
         if (!line.get(4).isEmpty()) {
             String[] ids = line.get(4).split("-");

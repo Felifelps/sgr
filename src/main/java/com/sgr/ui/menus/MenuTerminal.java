@@ -28,6 +28,7 @@ public abstract class MenuTerminal {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                TerminalUtils.esperarEnter();
             }
         }
     }

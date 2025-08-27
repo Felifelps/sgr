@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import com.sgr.dados.PedidoRepoCSV;
 import com.sgr.negocio.base.Cliente;
 import com.sgr.negocio.base.Item;
+import com.sgr.negocio.base.Pagamento;
 import com.sgr.negocio.base.Pedido;
 import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
@@ -17,10 +18,11 @@ public class PedidoService {
         this.repo = repo;
     }
 
-    public void adicionar(String cpfCliente) throws Exception{
+    public void adicionar(String cpfCliente) throws Exception {
         Cliente cliente = repo.getClienteRepo().getObjectByIdentifier(cpfCliente);
     
-        if (cliente == null) throw new ObjetoNaoEncontradoException("Cliente de cpf '" + cpfCliente + "'");
+        if (cliente == null) throw new ObjetoNaoEncontradoException(
+            "Cliente de cpf '" + cpfCliente + "'");
     
         int maior_id = 0;
         for (Pedido p : repo.listar()) if (p.getId() > maior_id) maior_id = p.getId();   
@@ -35,20 +37,49 @@ public class PedidoService {
         return repo.listar();
     }
 
-    public void adicionarItem(int idPedido, int idItem) throws Exception{
+    public void adicionarItem(int idPedido, int idItem) throws Exception {
         Pedido pedido = repo.getObjectByIdentifier((idPedido));
-        if (pedido == null) throw new ObjetoNaoEncontradoException("Pedido de id '" + idItem + "'");
+        if (pedido == null) throw new ObjetoNaoEncontradoException(
+            "Pedido de id '" + idPedido + "'");
         
         Item item = repo.getItemRepo().getObjectByIdentifier(idItem);
-        if (item == null) throw new ObjetoNaoEncontradoException("Item de id '" + idItem + "'");
+        if (item == null) throw new ObjetoNaoEncontradoException(
+            "Item de id '" + idItem + "'");
 
         pedido.adicionarItem(item);
         repo.salvar();
     }
 
-    public Pedido verPedido(int idPedido)  throws Exception {
+    public void removerItem(int idPedido, int idItem) throws Exception {
         Pedido pedido = repo.getObjectByIdentifier((idPedido));
-        if (pedido == null) throw new ObjetoNaoEncontradoException("Pedido de id '" + idPedido + "'");
+        if (pedido == null) throw new ObjetoNaoEncontradoException(
+            "Pedido de id '" + idPedido + "'");
+        
+        Item item = repo.getItemRepo().getObjectByIdentifier(idItem);
+        if (item == null) throw new ObjetoNaoEncontradoException(
+            "Item de id '" + idItem + "'");
+
+        pedido.removerItem(item);
+        repo.salvar();
+    }
+
+    public void associarPagamentoAPedido(int idPedido, int idPagamento) throws Exception {
+        Pedido pedido = repo.getObjectByIdentifier((idPedido));
+        if (pedido == null) throw new ObjetoNaoEncontradoException(
+            "Pedido de id '" + idPedido + "'");
+        
+        Pagamento pagamento = repo.getPagamentoRepo().getObjectByIdentifier(idPagamento);
+        if (pagamento == null) throw new ObjetoNaoEncontradoException(
+            "Pagamento de id '" + idPagamento + "'");
+
+        pedido.setPagamento(pagamento);
+        repo.salvar();
+    }
+
+    public Pedido verPedido(int idPedido) throws Exception {
+        Pedido pedido = repo.getObjectByIdentifier((idPedido));
+        if (pedido == null) throw new ObjetoNaoEncontradoException(
+            "Pedido de id '" + idPedido + "'");
         return pedido;
     }
 }

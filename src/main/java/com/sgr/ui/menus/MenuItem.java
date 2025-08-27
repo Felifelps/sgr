@@ -34,6 +34,7 @@ public class MenuItem extends MenuTerminal {
                 return false;
             default:
                 System.out.println("Opção inválida, tente novamente.");
+                TerminalUtils.esperarEnter();
                 break;
         }
         return true;

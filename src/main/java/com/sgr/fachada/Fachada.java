@@ -41,67 +41,83 @@ public class Fachada {
         this.pedidoService = new PedidoService(pedidoRepo);
     }
 
+    // Clientes
+
     public List<ClienteDTO> listarClientes() {
         return clienteService.listar()
             .stream()
             .map(ClienteDTO::new)
             .toList(); 
     }
-
-    public List<PedidoDTO> listarPedidos() {
-        return pedidoService.listar()
-            .stream()
-            .map(PedidoDTO::new)
-            .toList(); 
-    }
-
-    public List<PagamentoDTO> listarPagamentos() {
-        return pagamentoService.listar()
-            .stream()
-            .map(PagamentoDTO::new)
-            .toList(); 
-    }
-
-    public List<ItemDTO> listarItens() {
-        return itemService.listar()
-            .stream()
-            .map(ItemDTO::new)
-            .toList();
-    }
-
+    
     public void adicionarCliente(String cpf, String nome, String telefone) throws Exception {
         clienteService.adicionar(cpf, nome, telefone);
-    }
-
-    public void adicionarItem(String nome, double preco, String descricao) throws Exception {
-        itemService.adicionar(nome, preco, descricao);
-    }
-
-    public void adicionarPagamento(double valor, String tipo) throws Exception {
-        pagamentoService.adicionar(valor, tipo);
-    }
-
-    public void adicionarPedido(String cpfCliente) throws Exception {
-        pedidoService.adicionar(cpfCliente);
-    }
-
-    public void adicionariItemAPedido(int idPedido, int idItem) throws Exception {
-        pedidoService.adicionarItem(idPedido, idItem);
-    }
-
-    public PedidoDTO verPedido(int idPedido) throws Exception {
-        return new PedidoDTO(pedidoService.verPedido(idPedido));
     }
 
     public void removerCliente(String cpf) throws Exception {
         clienteService.remover(cpf);
     }
 
+    // Itens
+    
+    public List<ItemDTO> listarItens() {
+        return itemService.listar()
+        .stream()
+        .map(ItemDTO::new)
+        .toList();
+    }
+
+    public void adicionarItem(String nome, double preco, String descricao) throws Exception {
+        itemService.adicionar(nome, preco, descricao);
+    }
+
     public void removerItem(int id) throws Exception {
         itemService.remover(id);
     }
 
+    // Pagamentos
+
+    public List<PagamentoDTO> listarPagamentos() {
+        return pagamentoService.listar()
+        .stream()
+        .map(PagamentoDTO::new)
+        .toList(); 
+    }
+    
+    public void adicionarPagamento(double valor, String tipo) throws Exception {
+        pagamentoService.adicionar(valor, tipo);
+    }
+    
     public void removerPagamento(int id) throws Exception {
         pagamentoService.remover(id);
+    }
+
+    // Pedidos
+
+    public List<PedidoDTO> listarPedidos() {
+            return pedidoService.listar()
+                .stream()
+                .map(PedidoDTO::new)
+                .toList(); 
+        }
+    
+    public void adicionarPedido(String cpfCliente) throws Exception {
+        pedidoService.adicionar(cpfCliente);
+    }
+
+    public void adicionarItemPedido(int idPedido, int idItem) throws Exception {
+        pedidoService.adicionarItem(idPedido, idItem);
+    }
+    
+    public void removerItemPedido(int idPedido, int idItem) throws Exception {
+        pedidoService.removerItem(idPedido, idItem);
+    }
+
+    public void associarPagamentoAPedido(int idPedido, int idPagamento) throws Exception {
+        pedidoService.associarPagamentoAPedido(idPedido, idPagamento);
+    }
+
+    public PedidoDTO verPedido(int idPedido) throws Exception {
+        return new PedidoDTO(pedidoService.verPedido(idPedido));
     }
 }
