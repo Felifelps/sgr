@@ -39,9 +39,8 @@ public class ItemDTO {
 
     @Override
     public String toString() {
-        return "Item{"
-            + "id=" + this.id + ","
-            + "nome=" + this.nome
-        + "}";
+        return "Id: " + this.id
+        + " - Nome: " + this.nome
+        + " - Descrição: " + this.descricao;
     }
 }

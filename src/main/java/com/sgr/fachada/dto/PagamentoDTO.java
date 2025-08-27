@@ -48,10 +48,8 @@ public class PagamentoDTO {
 
     @Override
     public String toString() {
-        return "Pagamento{"
-            + "id=" + this.id + ","
-            + "valor=" + this.valor + ","
-            + "tipo=" + this.tipo
-        + "}";
+        return "Id: " + this.id
+        + " - Valor: " + this.valor
+        + " - Tipo: " + this.tipo;
     }
 }

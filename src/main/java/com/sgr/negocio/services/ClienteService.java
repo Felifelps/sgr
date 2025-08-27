@@ -7,6 +7,7 @@ import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
 import com.sgr.negocio.base.Cliente;
 import com.sgr.dados.ClienteRepoCSV;
+import com.sgr.util.Validador;
 
 public class ClienteService {
     private ClienteRepoCSV repo;
@@ -24,10 +25,16 @@ public class ClienteService {
 
         if (cpf == null || cpf.isEmpty())
             mensagem = "CPF vazio ou indefinido.";
+        else if (!Validador.validarCPF(cpf))
+            mensagem = "CPF inválido. Digite apenas os números.";
         else if (nome == null || nome.isEmpty())
             mensagem = "Nome vazio ou indefinido.";
+        else if (!Validador.validarNome(nome))
+            mensagem = "Nome inválido.";
         else if (telefone == null || telefone.isEmpty())
             mensagem = "Telefone vazio ou indefinido.";
+        else if (!Validador.validarTelefone(telefone))
+            mensagem = "Telefone inválido. Digite apenas os números, com DDD.";
 
         if (!mensagem.isEmpty()) throw new CampoInvalidoException(mensagem);
 

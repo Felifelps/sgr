@@ -36,10 +36,8 @@ public class ClienteDTO {
 
     @Override
     public String toString() {
-        return "Cliente{"
-            + "cpf=" + this.cpf + ","
-            + "nome=" + this.nome + ","
-            + "telefone=" + this.telefone
-        + "}";
+        return "CPF: " + this.cpf
+        + " - Nome: " + this.nome
+        + " - Telefone: " + this.telefone;
     }
 }

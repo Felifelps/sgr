@@ -56,12 +56,21 @@ public class PedidoDTO {
 
     @Override
     public String toString() {
-        return "Pedido{"
-            + "id=" + this.id + ","
-            + "cliente=" + this.cliente + ","
-            + "pagamento=" + this.pagamento + ","
-            + "data=" + this.data + ","
-            + "itens=" + this.itens
-        + "}";
+        System.out.println("Itens: " + (
+            this.itens.stream()
+            .map(item -> String.valueOf(item.id))
+            .reduce((a, b) -> a + ", " + b)
+            .orElse("")
+        ));
+        return "Id: " + this.id
+        + " - Data: " + this.data
+        + " - CPF Cliente: " + this.cliente.cpf
+        + " - ID Pagamento: " + (this.pagamento == null ? "#" : this.pagamento.id)
+        + " - Itens: [" + (
+            this.itens.stream()
+            .map(item -> String.valueOf(item.id))
+            .reduce((a, b) -> a + "," + b)
+            .orElse("")
+        ) + "]";
     }
 } 

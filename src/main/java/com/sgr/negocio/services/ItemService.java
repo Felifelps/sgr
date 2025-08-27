@@ -6,6 +6,7 @@ import com.sgr.dados.ItemRepoCSV;
 import com.sgr.negocio.base.Item;
 import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
+import com.sgr.util.Validador;
 
 public class ItemService {
     private ItemRepoCSV repo;
@@ -25,6 +26,8 @@ public class ItemService {
             mensagem = "Preço inválido.";
         else if (nome == null || nome.isEmpty())
             mensagem = "Nome vazio ou indefinido.";
+        else if (!Validador.validarNome(nome))
+            mensagem = "Nome inválido.";
         else if (descricao == null || descricao.isEmpty())
             mensagem = "Descrição vazia ou indefinida.";
 

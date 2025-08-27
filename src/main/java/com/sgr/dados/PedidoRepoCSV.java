@@ -100,8 +100,10 @@ public class PedidoRepoCSV extends RepoCSV<Pedido> {
 
         pedido.setPagamento(pagamento);
         
-        if (!line.get(4).isEmpty()) {
-            String[] ids = line.get(4).split("-");
+        String itensStr = line.get(4);
+
+        if (!itensStr.isEmpty()) {
+            String[] ids = itensStr.split("-");
 
             for (String i : ids) {
                 Item item = itemRepo.getObjectByIdentifier(
