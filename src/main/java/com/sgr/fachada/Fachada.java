@@ -9,10 +9,10 @@ import com.sgr.negocio.services.*;
 import com.sgr.fachada.dto.*;
 
 public class Fachada {
-    public ClienteRepoCSV clienteRepo;
-    public ItemRepoCSV itemRepo;
-    public PagamentoRepoCSV pagamentoRepo;
-    public PedidoRepoCSV pedidoRepo;
+    public Repositorio<Cliente> clienteRepo;
+    public Repositorio<Item> itemRepo;
+    public Repositorio<Pagamento> pagamentoRepo;
+    public PedidoRepositorio pedidoRepo;
 
     public ClienteService clienteService;
     public ItemService itemService;
@@ -20,17 +20,17 @@ public class Fachada {
     public PedidoService pedidoService;
 
     public Fachada() throws Exception {
-        this.clienteRepo = new ClienteRepoCSV();
+        this.clienteRepo = RepositorioFactory.criarClienteRepo();
         this.clienteRepo.carregar();
 
-        this.itemRepo = new ItemRepoCSV();
+        this.itemRepo = RepositorioFactory.criarItemRepo();
         this.itemRepo.carregar();
 
-        this.pagamentoRepo = new PagamentoRepoCSV();
+        this.pagamentoRepo = RepositorioFactory.criarPagamentoRepo();
         this.pagamentoRepo.carregar();
 
         // Pedido por último pois requer os outros
-        this.pedidoRepo = new PedidoRepoCSV(
+        this.pedidoRepo = RepositorioFactory.criarPedidoRepo(
             clienteRepo, itemRepo, pagamentoRepo
         );
         this.pedidoRepo.carregar();

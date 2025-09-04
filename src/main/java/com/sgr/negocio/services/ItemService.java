@@ -2,16 +2,16 @@ package com.sgr.negocio.services;
 
 import java.util.List;
 
-import com.sgr.dados.ItemRepoCSV;
+import com.sgr.dados.Repositorio;
 import com.sgr.negocio.base.Item;
 import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
 import com.sgr.util.Validador;
 
 public class ItemService {
-    private ItemRepoCSV repo;
+    private Repositorio<Item> repo;
 
-    public ItemService(ItemRepoCSV repo) {
+    public ItemService(Repositorio<Item> repo) {
         this.repo = repo;
     }
 

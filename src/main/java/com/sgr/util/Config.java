@@ -20,10 +20,15 @@ public class Config {
                 file.createNewFile();
 
                 // Seta as propriedades padrão
+                props.setProperty("tipo", "dat");
                 props.setProperty("csv_clientes", "csv/clientes.csv");
                 props.setProperty("csv_itens", "csv/itens.csv");
                 props.setProperty("csv_pagamentos", "csv/pagamentos.csv");
                 props.setProperty("csv_pedidos", "csv/pedidos.csv");
+                props.setProperty("dat_clientes", "dat/clientes.dat");
+                props.setProperty("dat_itens", "dat/itens.dat");
+                props.setProperty("dat_pagamentos", "dat/pagamentos.dat");
+                props.setProperty("dat_pedidos", "dat/pedidos.dat");
 
                 // Guarda as alterações novas
                 try (FileOutputStream out = new FileOutputStream(file)) {

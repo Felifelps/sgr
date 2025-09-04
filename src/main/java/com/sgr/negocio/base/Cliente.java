@@ -1,10 +1,11 @@
 package com.sgr.negocio.base;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-import java.util.Objects;
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Cliente {
     private String cpf;
     private String nome;
     private String telefone;

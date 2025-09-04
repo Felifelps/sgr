@@ -6,13 +6,13 @@ import com.sgr.negocio.exceptions.CpfInUseException;
 import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
 import com.sgr.negocio.base.Cliente;
-import com.sgr.dados.ClienteRepoCSV;
+import com.sgr.dados.Repositorio;
 import com.sgr.util.Validador;
 
 public class ClienteService {
-    private ClienteRepoCSV repo;
+    private Repositorio<Cliente> repo;
 
-    public ClienteService(ClienteRepoCSV repo) {
+    public ClienteService(Repositorio<Cliente> repo) {
         this.repo = repo;
     }
 

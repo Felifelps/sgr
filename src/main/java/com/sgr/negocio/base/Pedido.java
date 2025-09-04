@@ -6,8 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.io.Serializable;
 
-public class Pedido {
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private Cliente cliente;
     private List<Item> itens = new ArrayList<>();

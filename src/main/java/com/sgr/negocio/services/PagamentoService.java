@@ -2,7 +2,7 @@ package com.sgr.negocio.services;
 
 import java.util.List;
 
-import com.sgr.dados.PagamentoRepoCSV;
+import com.sgr.dados.Repositorio;
 import com.sgr.negocio.base.Pagamento;
 import com.sgr.negocio.base.PagamentoPix;
 import com.sgr.negocio.base.PagamentoCartao;
@@ -11,9 +11,9 @@ import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
 
 public class PagamentoService {
-    private PagamentoRepoCSV repo;
+    private Repositorio<Pagamento> repo;
 
-    public PagamentoService(PagamentoRepoCSV repo) {
+    public PagamentoService(Repositorio<Pagamento> repo) {
         this.repo = repo;
     }
 

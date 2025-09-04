@@ -1,8 +1,10 @@
 package com.sgr.negocio.base;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PagamentoCartao extends Pagamento {
+public class PagamentoCartao extends Pagamento implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public PagamentoCartao(int id, double valor) {
         super(id, valor);

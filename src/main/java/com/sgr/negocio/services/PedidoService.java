@@ -3,7 +3,7 @@ package com.sgr.negocio.services;
 import java.util.List;
 import java.time.LocalDate;
 
-import com.sgr.dados.PedidoRepoCSV;
+import com.sgr.dados.PedidoRepositorio;
 import com.sgr.negocio.base.Cliente;
 import com.sgr.negocio.base.Item;
 import com.sgr.negocio.base.Pagamento;
@@ -12,14 +12,14 @@ import com.sgr.negocio.exceptions.CampoInvalidoException;
 import com.sgr.negocio.exceptions.ObjetoNaoEncontradoException;
 
 public class PedidoService {
-    private PedidoRepoCSV repo;
+    private PedidoRepositorio repo;
 
-    public PedidoService(PedidoRepoCSV repo) {
+    public PedidoService(PedidoRepositorio repo) {
         this.repo = repo;
     }
 
     public void adicionar(String cpfCliente) throws Exception {
-        Cliente cliente = repo.getClienteRepo().getObjectByIdentifier(cpfCliente);
+        Cliente cliente = repo.getClienteByCpf(cpfCliente);
     
         if (cliente == null) throw new ObjetoNaoEncontradoException(
             "Cliente de cpf '" + cpfCliente + "'");
@@ -42,7 +42,7 @@ public class PedidoService {
         if (pedido == null) throw new ObjetoNaoEncontradoException(
             "Pedido de id '" + idPedido + "'");
         
-        Item item = repo.getItemRepo().getObjectByIdentifier(idItem);
+        Item item = repo.getItemById(idItem);
         if (item == null) throw new ObjetoNaoEncontradoException(
             "Item de id '" + idItem + "'");
 
@@ -55,7 +55,7 @@ public class PedidoService {
         if (pedido == null) throw new ObjetoNaoEncontradoException(
             "Pedido de id '" + idPedido + "'");
         
-        Item item = repo.getItemRepo().getObjectByIdentifier(idItem);
+        Item item = repo.getItemById(idItem);
         if (item == null) throw new ObjetoNaoEncontradoException(
             "Item de id '" + idItem + "'");
 
@@ -68,7 +68,7 @@ public class PedidoService {
         if (pedido == null) throw new ObjetoNaoEncontradoException(
             "Pedido de id '" + idPedido + "'");
         
-        Pagamento pagamento = repo.getPagamentoRepo().getObjectByIdentifier(idPagamento);
+        Pagamento pagamento = repo.getPagamentoById(idPagamento);
         if (pagamento == null) throw new ObjetoNaoEncontradoException(
             "Pagamento de id '" + idPagamento + "'");
 

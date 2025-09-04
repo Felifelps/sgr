@@ -6,7 +6,7 @@ import com.opencsv.CSVWriter;
 import java.util.*;
 import java.io.*;
 
-public abstract class RepoCSV<T> { // Tipo genérico T
+public abstract class RepoCSV<T> implements Repositorio<T> { // Tipo genérico T
     protected String arquivo;
     protected List<T> cache = new ArrayList<>();
 

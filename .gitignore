@@ -16,6 +16,9 @@ config.properties
 # CSVs
 /csv/
 
+# Dats
+/dat/
+
 # IDEs
 *.iml
 .idea/

@@ -8,8 +8,8 @@ import java.util.List;
 
 public class ClienteRepoCSV extends RepoCSV<Cliente> {
 
-    public ClienteRepoCSV() throws Exception {
-        super(Config.getConfig("csv_clientes"));
+    public ClienteRepoCSV(String arquivo) throws Exception {
+        super(arquivo);
     }
 
     @Override

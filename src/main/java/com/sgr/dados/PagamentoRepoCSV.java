@@ -11,8 +11,8 @@ import java.util.List;
 
 public class PagamentoRepoCSV extends RepoCSV<Pagamento> {
 
-    public PagamentoRepoCSV() throws Exception {
-        super(Config.getConfig("csv_pagamentos"));
+    public PagamentoRepoCSV(String arquivo) throws Exception {
+        super(arquivo);
     }
 
     @Override

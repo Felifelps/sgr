@@ -9,34 +9,48 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class PedidoRepoCSV extends RepoCSV<Pedido> {
-    private ClienteRepoCSV clienteRepo;
-    private ItemRepoCSV itemRepo;
-    private PagamentoRepoCSV pagamentoRepo;
+public class PedidoRepoCSV extends RepoCSV<Pedido> implements PedidoRepositorio {
+    private Repositorio<Cliente> clienteRepo;
+    private Repositorio<Item> itemRepo;
+    private Repositorio<Pagamento> pagamentoRepo;
 
     public PedidoRepoCSV(
-        ClienteRepoCSV clienteRepo,
-        ItemRepoCSV itemRepo,
-        PagamentoRepoCSV pagamentoRepo
+        String arquivo,
+        Repositorio<Cliente> clienteRepo,
+        Repositorio<Item> itemRepo,
+        Repositorio<Pagamento> pagamentoRepo
     ) throws Exception {
-        super(Config.getConfig("csv_pedidos"));
-
+        super(arquivo);
         this.clienteRepo = clienteRepo;
         this.itemRepo = itemRepo;
         this.pagamentoRepo = pagamentoRepo;
-
     }
 
-    public ClienteRepoCSV getClienteRepo() {
+    public Repositorio<Cliente> getClienteRepo() {
         return clienteRepo;
     }
 
-    public ItemRepoCSV getItemRepo() {
+    public Repositorio<Item> getItemRepo() {
         return itemRepo;
     }
 
-    public PagamentoRepoCSV getPagamentoRepo() {
+    public Repositorio<Pagamento> getPagamentoRepo() {
         return pagamentoRepo;
+    }
+
+    @Override
+    public Cliente getClienteByCpf(String cpf) {
+        return clienteRepo.getObjectByIdentifier(cpf);
+    }
+
+    @Override
+    public Item getItemById(int id) {
+        return itemRepo.getObjectByIdentifier(id);
+    }
+
+    @Override
+    public Pagamento getPagamentoById(int id) {
+        return pagamentoRepo.getObjectByIdentifier(id);
     }
 
     @Override
